@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../data/model/business.dart';
 import '../../repository/business_repository.dart';
+import '../widget/search_bar.dart';
 
 class BusinessListPage extends StatefulWidget {
   const BusinessListPage({super.key});
@@ -16,12 +17,9 @@ class BusinessListPage extends StatefulWidget {
 }
 
 class _BusinessListPageState extends State<BusinessListPage> {
-  String query = "";
-
   @override
   void initState() {
     super.initState();
-
     context.read<ItemsNotifier<Business>>().loadItems(() => context.read<BusinessRepository>().getAll());
   }
 
@@ -30,22 +28,7 @@ class _BusinessListPageState extends State<BusinessListPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Businesses"),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: const InputDecoration(
-                hintText: "Search businesses...",
-                filled: true,
-                border: InputBorder.none,
-              ),
-              onChanged: (val) {
-                context.read<ItemsNotifier<Business>>().searchByName(val, (b) => b.name);
-              },
-            ),
-          ),
-        ),
+        bottom: CustomSearchBar(),
       ),
       body: ItemsListView<Business>(
         padding: 16,
