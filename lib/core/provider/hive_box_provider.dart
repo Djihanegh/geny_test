@@ -76,7 +76,7 @@ abstract class HiveBoxProvider<T> extends ItemProvider<T> {
   @override
   Future<String> add(T item) async {
     final json = toJson(item);
-    final id = json['id'] as String;
+    final id = json['biz_name'] as String;
 
     final box = await _box;
     await box.put(id, json);
