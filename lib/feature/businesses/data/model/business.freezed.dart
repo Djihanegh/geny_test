@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -10,53 +9,38 @@ part of 'business.dart';
 // FreezedGenerator
 // **************************************************************************
 
-// dart format off
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+Business _$BusinessFromJson(Map<String, dynamic> json) {
+  return _Business.fromJson(json);
+}
 
 /// @nodoc
 mixin _$Business {
   @JsonKey(name: 'biz_name')
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'bss_location')
-  String get location;
+  String get location => throw _privateConstructorUsedError;
   @JsonKey(name: 'contct_no')
-  String get phone;
+  String get phone => throw _privateConstructorUsedError;
+
+  /// Serializes this Business to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of Business
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
   $BusinessCopyWith<Business> get copyWith =>
-      _$BusinessCopyWithImpl<Business>(this as Business, _$identity);
-
-  /// Serializes this Business to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is Business &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.location, location) ||
-                other.location == location) &&
-            (identical(other.phone, phone) || other.phone == phone));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, name, location, phone);
-
-  @override
-  String toString() {
-    return 'Business(name: $name, location: $location, phone: $phone)';
-  }
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract mixin class $BusinessCopyWith<$Res> {
-  factory $BusinessCopyWith(Business value, $Res Function(Business) _then) =
-      _$BusinessCopyWithImpl;
+abstract class $BusinessCopyWith<$Res> {
+  factory $BusinessCopyWith(Business value, $Res Function(Business) then) =
+      _$BusinessCopyWithImpl<$Res, Business>;
   @useResult
   $Res call(
       {@JsonKey(name: 'biz_name') String name,
@@ -65,11 +49,14 @@ abstract mixin class $BusinessCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$BusinessCopyWithImpl<$Res> implements $BusinessCopyWith<$Res> {
-  _$BusinessCopyWithImpl(this._self, this._then);
+class _$BusinessCopyWithImpl<$Res, $Val extends Business>
+    implements $BusinessCopyWith<$Res> {
+  _$BusinessCopyWithImpl(this._value, this._then);
 
-  final Business _self;
-  final $Res Function(Business) _then;
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
   /// Create a copy of Business
   /// with the given fields replaced by the non-null parameter values.
@@ -80,17 +67,65 @@ class _$BusinessCopyWithImpl<$Res> implements $BusinessCopyWith<$Res> {
     Object? location = null,
     Object? phone = null,
   }) {
-    return _then(_self.copyWith(
+    return _then(_value.copyWith(
       name: null == name
-          ? _self.name
+          ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       location: null == location
-          ? _self.location
+          ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String,
       phone: null == phone
-          ? _self.phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BusinessImplCopyWith<$Res>
+    implements $BusinessCopyWith<$Res> {
+  factory _$$BusinessImplCopyWith(
+          _$BusinessImpl value, $Res Function(_$BusinessImpl) then) =
+      __$$BusinessImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'biz_name') String name,
+      @JsonKey(name: 'bss_location') String location,
+      @JsonKey(name: 'contct_no') String phone});
+}
+
+/// @nodoc
+class __$$BusinessImplCopyWithImpl<$Res>
+    extends _$BusinessCopyWithImpl<$Res, _$BusinessImpl>
+    implements _$$BusinessImplCopyWith<$Res> {
+  __$$BusinessImplCopyWithImpl(
+      _$BusinessImpl _value, $Res Function(_$BusinessImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Business
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? location = null,
+    Object? phone = null,
+  }) {
+    return _then(_$BusinessImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone: null == phone
+          ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -99,13 +134,14 @@ class _$BusinessCopyWithImpl<$Res> implements $BusinessCopyWith<$Res> {
 
 /// @nodoc
 @JsonSerializable()
-class _Business implements Business {
-  const _Business(
+class _$BusinessImpl implements _Business {
+  const _$BusinessImpl(
       {@JsonKey(name: 'biz_name') required this.name,
       @JsonKey(name: 'bss_location') required this.location,
       @JsonKey(name: 'contct_no') required this.phone});
-  factory _Business.fromJson(Map<String, dynamic> json) =>
-      _$BusinessFromJson(json);
+
+  factory _$BusinessImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BusinessImplFromJson(json);
 
   @override
   @JsonKey(name: 'biz_name')
@@ -117,26 +153,16 @@ class _Business implements Business {
   @JsonKey(name: 'contct_no')
   final String phone;
 
-  /// Create a copy of Business
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$BusinessCopyWith<_Business> get copyWith =>
-      __$BusinessCopyWithImpl<_Business>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$BusinessToJson(
-      this,
-    );
+  String toString() {
+    return 'Business(name: $name, location: $location, phone: $phone)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Business &&
+            other is _$BusinessImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.location, location) ||
                 other.location == location) &&
@@ -147,56 +173,46 @@ class _Business implements Business {
   @override
   int get hashCode => Object.hash(runtimeType, name, location, phone);
 
+  /// Create a copy of Business
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  String toString() {
-    return 'Business(name: $name, location: $location, phone: $phone)';
+  @pragma('vm:prefer-inline')
+  _$$BusinessImplCopyWith<_$BusinessImpl> get copyWith =>
+      __$$BusinessImplCopyWithImpl<_$BusinessImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BusinessImplToJson(
+      this,
+    );
   }
 }
 
-/// @nodoc
-abstract mixin class _$BusinessCopyWith<$Res>
-    implements $BusinessCopyWith<$Res> {
-  factory _$BusinessCopyWith(_Business value, $Res Function(_Business) _then) =
-      __$BusinessCopyWithImpl;
+abstract class _Business implements Business {
+  const factory _Business(
+          {@JsonKey(name: 'biz_name') required final String name,
+          @JsonKey(name: 'bss_location') required final String location,
+          @JsonKey(name: 'contct_no') required final String phone}) =
+      _$BusinessImpl;
+
+  factory _Business.fromJson(Map<String, dynamic> json) =
+      _$BusinessImpl.fromJson;
+
   @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'biz_name') String name,
-      @JsonKey(name: 'bss_location') String location,
-      @JsonKey(name: 'contct_no') String phone});
-}
-
-/// @nodoc
-class __$BusinessCopyWithImpl<$Res> implements _$BusinessCopyWith<$Res> {
-  __$BusinessCopyWithImpl(this._self, this._then);
-
-  final _Business _self;
-  final $Res Function(_Business) _then;
+  @JsonKey(name: 'biz_name')
+  String get name;
+  @override
+  @JsonKey(name: 'bss_location')
+  String get location;
+  @override
+  @JsonKey(name: 'contct_no')
+  String get phone;
 
   /// Create a copy of Business
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? name = null,
-    Object? location = null,
-    Object? phone = null,
-  }) {
-    return _then(_Business(
-      name: null == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      location: null == location
-          ? _self.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _self.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$BusinessImplCopyWith<_$BusinessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
-
-// dart format on

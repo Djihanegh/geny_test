@@ -7,12 +7,12 @@ class BusinessDioProvider extends DioHttpProvider {
         );
 
   Future<Map<String, dynamic>> getBusiness(int id) async {
-    final result = await get('business/$id');
+    final result = await get('businesses/$id');
     return result.data!;
   }
 
   Future<Map<String, dynamic>> getAll() async {
-    final result = await get('business/');
+    final result = await get('businesses/');
     return result.data!;
   }
 }
