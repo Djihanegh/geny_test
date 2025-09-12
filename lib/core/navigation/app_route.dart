@@ -5,7 +5,7 @@ enum AppRoute {
   // Common
   splash('/splash', 'splash'),
   businesses('/', 'businesses'),
-  details('/details', 'details'),
+  details('/business-details', 'business-details'),
   ;
 
   const AppRoute(this.path, this.name);
