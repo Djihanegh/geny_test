@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+
 import 'item_provider.dart';
 
 typedef FromJson<T> = T Function(Map<String, dynamic> json);
@@ -59,6 +60,17 @@ abstract class HiveBoxProvider<T> extends ItemProvider<T> {
   Future<List<T>> getAll() async {
     final box = await _box;
     return box.values.map((e) => fromJson(Map.from(e))).toList();
+  }
+
+  Future<void> saveAll(List<T> items, {required String Function(T) keyBuilder, required Map<String, dynamic> Function(T) toJson}) async {
+    final box = await _box;
+    await box.clear();
+
+    final entries = {
+      for (final item in items) keyBuilder(item): toJson(item),
+    };
+
+    await box.putAll(entries);
   }
 
   @override
