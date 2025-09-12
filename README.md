@@ -1,4 +1,3 @@
-# geny_test
 
 # Tech Notes — geny_test
 
