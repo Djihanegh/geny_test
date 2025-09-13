@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:geny_test/feature/businesses/data/datasources/business_remote_datasource.dart';
-import 'package:geny_test/feature/businesses/repository/business_repository.dart';
+import 'package:geny_test/feature/business/data/datasources/business_remote_datasource.dart';
+import 'package:geny_test/feature/business/repository/business_repository.dart';
 import 'package:provider/provider.dart';
 
-import '../../feature/businesses/data/datasources/business_local_datasource.dart';
-import '../../feature/businesses/data/model/business.dart';
+import '../../feature/business/data/datasources/business_local_datasource.dart';
+import '../../feature/business/data/model/business.dart';
 import '../controller/items_provider.dart';
 
 class DI extends StatelessWidget {
