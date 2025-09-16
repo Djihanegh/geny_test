@@ -1,4 +1,6 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:geny_test/core/provider/connectivity_provider.dart';
 import 'package:geny_test/feature/business/data/datasources/business_remote_datasource.dart';
 import 'package:geny_test/feature/business/repository/business_repository.dart';
 import 'package:provider/provider.dart';
@@ -38,11 +40,11 @@ class _ProviderDI extends StatelessWidget {
         Provider<BusinessHiveBoxProvider>(
           create: (_) => BusinessHiveBoxProvider(),
         ),
-        ProxyProvider2<BusinessDioProvider, BusinessHiveBoxProvider, BusinessRepository>(
-          update: (_, remote, local, __) => BusinessRepository(
-            remoteProvider: remote,
-            localProvider: local,
-          ),
+        Provider<ConnectivityProvider>(
+          create: (_) => ConnectivityProvider(connectivity: Connectivity()),
+        ),
+        ProxyProvider3<BusinessDioProvider, BusinessHiveBoxProvider, ConnectivityProvider, BusinessRepository>(
+          update: (_, remote, local, connectivity, r) => BusinessRepository(remoteProvider: remote, localProvider: local, connectivityProvider: connectivity),
         ),
         ChangeNotifierProvider(create: (_) => ItemsNotifier<Business>())
       ],

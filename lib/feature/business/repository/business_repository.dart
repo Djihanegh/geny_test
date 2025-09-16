@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:geny_test/core/exception/app_exception.dart';
+import 'package:geny_test/core/provider/connectivity_provider.dart';
 import 'package:geny_test/feature/business/data/datasources/business_remote_datasource.dart';
 import 'package:geny_test/feature/business/data/model/business.dart';
 
@@ -10,14 +11,16 @@ class BusinessRepository extends ItemRepository<Business> {
   BusinessRepository({
     required this.remoteProvider,
     required this.localProvider,
+    required this.connectivityProvider,
   });
 
   final BusinessDioProvider remoteProvider;
   final HiveBoxProvider<Business> localProvider;
+  final ConnectivityProvider connectivityProvider;
 
   @override
   Future<Either<AppException, List<Business>>> getAll() async {
-    final connectivityResult = await (Connectivity().checkConnectivity());
+    final connectivityResult = await (connectivityProvider.checkConnectivity());
 
     if (connectivityResult.isNotEmpty && !connectivityResult.contains(ConnectivityResult.none)) {
       try {
