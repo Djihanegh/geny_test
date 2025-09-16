@@ -9,6 +9,7 @@ class ItemsNotifier<T> extends ChangeNotifier {
   ItemsState<T> get state => _state;
 
   List<T> _allItems = [];
+  List<T> get allItems => _allItems;
 
   Future<void> loadItems(Future<Either<AppException, List<T>>> Function() fetcher) async {
     _state = ItemsLoading<T>();

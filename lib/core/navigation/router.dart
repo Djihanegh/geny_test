@@ -26,7 +26,7 @@ GoRouter getRouter() {
       GoRoute(
         path: AppRoute.businesses.path,
         name: AppRoute.businesses.name,
-        builder: (context, state) => BusinessListPage(),
+        builder: (context, state) => const BusinessListPage(),
       ),
       GoRoute(
         path: AppRoute.details.path,
