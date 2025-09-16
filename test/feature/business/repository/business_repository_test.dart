@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geny_test/core/core.dart';
+import 'package:geny_test/core/exception/app_exception.dart';
 import 'package:geny_test/core/provider/connectivity_provider.dart';
 import 'package:geny_test/feature/business/data/datasources/business_remote_datasource.dart';
 import 'package:geny_test/feature/business/data/model/business.dart';
@@ -36,7 +37,7 @@ void main() {
   });
 
   group("BusinessRepository.getAll", () {
-    test("returns [Business] when online (cached data)", () async {
+    test("returns Right(CachedData) when online && cache is not empty", () async {
       // Arrange
       when(() => connectivity.checkConnectivity()).thenAnswer((_) async => [ConnectivityResult.wifi]);
 
@@ -48,8 +49,6 @@ void main() {
 
       // Act
       final result = await repository.getAll();
-
-      print(result.toString());
 
       // Assert
       expect(result.isRight(), true);
@@ -63,7 +62,7 @@ void main() {
       verifyNever(() => localProvider.saveAll(any(), keyBuilder: any(named: "keyBuilder"), toJson: any(named: "toJson")));
     });
 
-    test("returns [Business] when offline (cached data)", () async {
+    test("returns Right(cachedData) when offline  && cache is not empty", () async {
       // Arrange
       when(() => connectivity.checkConnectivity()).thenAnswer((_) async => [ConnectivityResult.none]);
 
@@ -76,8 +75,6 @@ void main() {
       // Act
       final result = await repository.getAll();
 
-      print(result.toString());
-
       // Assert
       expect(result.isRight(), true);
 
@@ -87,6 +84,31 @@ void main() {
       });
 
       verifyNever(() => remoteProvider.getAll());
+      verifyNever(() => localProvider.saveAll(any(), keyBuilder: any(named: "keyBuilder"), toJson: any(named: "toJson")));
+    });
+
+    test("returns AppException when cache is empty ( Online ) ", () async {
+      // Arrange
+      when(() => connectivity.checkConnectivity()).thenAnswer((_) async => [ConnectivityResult.wifi]);
+
+      when(() => remoteProvider.getAll()).thenAnswer((_) async => Future.value({}));
+
+      when(() => localProvider.getAll()).thenAnswer((_) async => []);
+
+      // Act
+      final result = await repository.getAll();
+
+      // Assert
+      expect(result.isLeft(), true);
+
+      result.fold((error) {
+        expect(error, isA<AppException>());
+        expect(error.getText(), 'Unknown');
+      }, (_) {
+        fail("Should have returned an AppException ( Left )");
+      });
+
+      verify(() => remoteProvider.getAll()).called(1);
       verifyNever(() => localProvider.saveAll(any(), keyBuilder: any(named: "keyBuilder"), toJson: any(named: "toJson")));
     });
   });
