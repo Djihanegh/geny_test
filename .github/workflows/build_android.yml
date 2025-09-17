@@ -22,7 +22,7 @@ jobs:
           ls -R .github/actions/flutter-setup
 
       - name: 🔧 Setup Flutter
-        uses: ./.github/actions/flutter-setup
+        uses: .github/actions/flutter-setup
 
       - name: 🏗️ Build release APK
         run: flutter build apk --release
