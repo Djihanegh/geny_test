@@ -13,14 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📂 Checkout source
-        uses: actions/checkout@v3
-
-      - name: 🔍 Debug — list files
-        run: |
-          echo "Repo root:"
-          ls -R .github/actions/flutter-setup
-
       - name: 🔧 Setup Flutter
         uses: ./.github/actions/flutter-setup
 
