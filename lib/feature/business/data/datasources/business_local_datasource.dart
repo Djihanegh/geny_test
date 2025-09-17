@@ -2,9 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-
-import '../../../../core/core.dart';
-import '../model/business.dart';
+import 'package:geny_test/core/core.dart';
+import 'package:geny_test/feature/business/data/model/business.dart';
 
 class BusinessHiveBoxProvider extends HiveBoxProvider<Business> {
   BusinessHiveBoxProvider()
@@ -25,10 +24,10 @@ class BusinessHiveBoxProvider extends HiveBoxProvider<Business> {
 
   Future<void> _addDummyBusinesses() async {
     try {
-      final data = await rootBundle.loadString("assets/data/businesses.json");
-      final List<dynamic> parsed = jsonDecode(data);
+      final data = await rootBundle.loadString('assets/data/businesses.json');
+      final parsed = jsonDecode(data) as List<Map<String, dynamic>>;
 
-      for (dynamic e in parsed) {
+      for (final e in parsed) {
         await add(Business.fromJson(e));
       }
     } catch (e) {

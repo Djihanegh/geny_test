@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:geny_test/core/controller/items_provider.dart';
+import 'package:geny_test/feature/business/data/model/business.dart';
 import 'package:provider/provider.dart';
-
-import '../../../../core/controller/items_provider.dart';
-import '../../data/model/business.dart';
 
 class CustomSearchBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomSearchBar({super.key});
@@ -12,10 +11,10 @@ class CustomSearchBar extends StatelessWidget implements PreferredSizeWidget {
     return PreferredSize(
       preferredSize: const Size.fromHeight(50),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8),
         child: TextField(
           decoration: const InputDecoration(
-            hintText: "Search businesses...",
+            hintText: 'Search businesses...',
             filled: true,
             border: InputBorder.none,
           ),

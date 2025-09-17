@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-
-import '../exception/app_exception.dart';
-import 'items_state.dart';
+import 'package:geny_test/core/controller/items_state.dart';
+import 'package:geny_test/core/exception/app_exception.dart';
 
 class ItemsNotifier<T> extends ChangeNotifier {
   ItemsState<T> _state = ItemsLoading<T>();
@@ -28,7 +27,9 @@ class ItemsNotifier<T> extends ChangeNotifier {
   }
 
   void searchByName(String query, String Function(T) getName) {
-    if (_allItems.isEmpty) return;
+    if (_allItems.isEmpty) {
+      return;
+    }
 
     if (query.isEmpty) {
       _state = ItemsLoaded<T>(_allItems);

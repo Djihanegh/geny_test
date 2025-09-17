@@ -1,4 +1,4 @@
-import '../../../../core/core.dart';
+import 'package:geny_test/core/core.dart';
 
 class BusinessDioProvider extends DioHttpProvider {
   BusinessDioProvider()

@@ -33,7 +33,7 @@ class _AppState extends State<_App> {
   Widget build(BuildContext context) {
     return KeyboardVisibilityProvider(
       child: MaterialApp.router(
-        onGenerateTitle: (context) => "Geny App",
+        onGenerateTitle: (context) => 'Geny App',
         themeMode: ThemeMode.light,
         debugShowCheckedModeBanner: false,
         routerConfig: _router,

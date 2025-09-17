@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geny_test/core/controller/items_provider.dart';
+import 'package:geny_test/core/controller/items_state.dart';
 import 'package:provider/provider.dart';
-
-import '../../../controller/items_state.dart';
 
 typedef ItemWidgetBuilder<T> = Widget Function(BuildContext context, T item);
 
@@ -28,13 +27,13 @@ class ItemsListView<T> extends StatelessWidget {
     }
 
     if (itemsState is ItemsError<T>) {
-      return Center(child: Text("Error: ${itemsState.message}"));
+      return Center(child: Text('Error: ${itemsState.message}'));
     }
 
     if (itemsState is ItemsLoaded<T>) {
       if (itemsState.items.isEmpty) {
         return Center(
-          child: emptyBuilder?.call(context) ?? Text("List is empty"),
+          child: emptyBuilder?.call(context) ?? const Text('List is empty'),
         );
       }
 

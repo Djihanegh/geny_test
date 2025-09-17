@@ -1,6 +1,5 @@
+import 'package:geny_test/core/provider/item_provider.dart';
 import 'package:hive/hive.dart';
-
-import 'item_provider.dart';
 
 typedef FromJson<T> = T Function(Map<String, dynamic> json);
 typedef ToJson<T> = Map<String, dynamic> Function(T item);

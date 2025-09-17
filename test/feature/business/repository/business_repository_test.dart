@@ -36,14 +36,14 @@ void main() {
     );
   });
 
-  group("BusinessRepository.getAll", () {
-    test("returns Right(CachedData) when online && cache is not empty", () async {
+  group('BusinessRepository.getAll', () {
+    test('returns Right(CachedData) when online && cache is not empty', () async {
       // Arrange
       when(() => connectivity.checkConnectivity()).thenAnswer((_) async => [ConnectivityResult.wifi]);
 
       when(() => remoteProvider.getAll()).thenAnswer((_) async => Future.value({}));
 
-      when(() => localProvider.saveAll(any(), keyBuilder: any(named: "keyBuilder"), toJson: any(named: "toJson"))).thenAnswer((_) async => Future.value());
+      when(() => localProvider.saveAll(any(), keyBuilder: any(named: 'keyBuilder'), toJson: any(named: 'toJson'))).thenAnswer((_) async => Future.value());
 
       when(() => localProvider.getAll()).thenAnswer((_) async => fakeBusinesses);
 
@@ -55,20 +55,20 @@ void main() {
 
       result.fold((_) => fail('Should return businesses'), (list) {
         expect(list.length, 3);
-        expect(list.first.name, "Glow & Go Salon");
+        expect(list.first.name, 'Glow & Go Salon');
       });
 
       verify(() => remoteProvider.getAll()).called(1);
-      verifyNever(() => localProvider.saveAll(any(), keyBuilder: any(named: "keyBuilder"), toJson: any(named: "toJson")));
+      verifyNever(() => localProvider.saveAll(any(), keyBuilder: any(named: 'keyBuilder'), toJson: any(named: 'toJson')));
     });
 
-    test("returns Right(cachedData) when offline  && cache is not empty", () async {
+    test('returns Right(cachedData) when offline  && cache is not empty', () async {
       // Arrange
       when(() => connectivity.checkConnectivity()).thenAnswer((_) async => [ConnectivityResult.none]);
 
       when(() => remoteProvider.getAll()).thenAnswer((_) async => Future.value({}));
 
-      when(() => localProvider.saveAll(any(), keyBuilder: any(named: "keyBuilder"), toJson: any(named: "toJson"))).thenAnswer((_) async => Future.value());
+      when(() => localProvider.saveAll(any(), keyBuilder: any(named: 'keyBuilder'), toJson: any(named: 'toJson'))).thenAnswer((_) async => Future.value());
 
       when(() => localProvider.getAll()).thenAnswer((_) async => fakeBusinesses);
 
@@ -80,14 +80,14 @@ void main() {
 
       result.fold((_) => fail('Should return businesses'), (list) {
         expect(list.length, 3);
-        expect(list.first.name, "Glow & Go Salon");
+        expect(list.first.name, 'Glow & Go Salon');
       });
 
       verifyNever(() => remoteProvider.getAll());
-      verifyNever(() => localProvider.saveAll(any(), keyBuilder: any(named: "keyBuilder"), toJson: any(named: "toJson")));
+      verifyNever(() => localProvider.saveAll(any(), keyBuilder: any(named: 'keyBuilder'), toJson: any(named: 'toJson')));
     });
 
-    test("returns AppException when cache is empty ( Online ) ", () async {
+    test('returns AppException when cache is empty ( Online ) ', () async {
       // Arrange
       when(() => connectivity.checkConnectivity()).thenAnswer((_) async => [ConnectivityResult.wifi]);
 
@@ -105,11 +105,11 @@ void main() {
         expect(error, isA<AppException>());
         expect(error.getText(), 'Unknown');
       }, (_) {
-        fail("Should have returned an AppException ( Left )");
+        fail('Should have returned an AppException ( Left )');
       });
 
       verify(() => remoteProvider.getAll()).called(1);
-      verifyNever(() => localProvider.saveAll(any(), keyBuilder: any(named: "keyBuilder"), toJson: any(named: "toJson")));
+      verifyNever(() => localProvider.saveAll(any(), keyBuilder: any(named: 'keyBuilder'), toJson: any(named: 'toJson')));
     });
   });
 }

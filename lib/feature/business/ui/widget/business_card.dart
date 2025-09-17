@@ -10,41 +10,45 @@ class BusinessCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        child: Padding(
-            padding: EdgeInsets.all(10),
-            child: Container(
-              height: 300,
-              padding: EdgeInsets.all(15),
-              decoration: BoxDecoration(color: Colors.black12, borderRadius: BorderRadius.all(Radius.circular(9))),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Container(
+          height: 300,
+          padding: const EdgeInsets.all(15),
+          decoration: const BoxDecoration(color: Colors.black12, borderRadius: BorderRadius.all(Radius.circular(9))),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 80, child: Icon(Icons.image_not_supported)),
+              const Divider(),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 80, child: Icon(Icons.image_not_supported)),
-                  Divider(),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Text(
+                    ' ${business.name}',
+                    textAlign: TextAlign.start,
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
                     children: [
-                      Text(
-                        " ${business.name}",
-                        textAlign: TextAlign.start,
+                      const Icon(
+                        Icons.location_on_outlined,
+                        color: Colors.red,
                       ),
-                      const SizedBox(height: 8),
-                      Row(children: [
-                        Icon(
-                          Icons.location_on_outlined,
-                          color: Colors.red,
-                        ),
-                        Text(business.location)
-                      ]),
-                      const SizedBox(height: 8),
-                      Text(' 📞 ${business.phone}'),
+                      Text(business.location),
                     ],
-                  )
+                  ),
+                  const SizedBox(height: 8),
+                  Text(' 📞 ${business.phone}'),
                 ],
               ),
-            )),
-        onTap: () => context.push("/business-details", extra: business));
+            ],
+          ),
+        ),
+      ),
+      onTap: () => context.push('/business-details', extra: business),
+    );
   }
 }

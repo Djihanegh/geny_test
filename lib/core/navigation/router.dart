@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:geny_test/core/navigation/app_route.dart';
+import 'package:geny_test/feature/business/data/model/business.dart';
+import 'package:geny_test/feature/business/ui/page/business_detail_page.dart';
+import 'package:geny_test/feature/business/ui/page/business_list_page.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../feature/business/data/model/business.dart';
-import '../../feature/business/ui/page/business_detail_page.dart';
-import '../../feature/business/ui/page/business_list_page.dart';
 
 GoRouter getRouter() {
   return GoRouter(

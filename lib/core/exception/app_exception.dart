@@ -32,8 +32,8 @@ enum AppException {
   }
 
   String getText() => switch (this) {
-        AppException.noInternet => "No network data",
-        AppException.noLocalData => "No Businesses available",
-        AppException.unknown => "Unknown",
+        AppException.noInternet => 'No network data',
+        AppException.noLocalData => 'No Businesses available',
+        AppException.unknown => 'Unknown',
       };
 }

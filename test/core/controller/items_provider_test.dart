@@ -1,8 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geny_test/core/controller/items_provider.dart';
 import 'package:geny_test/core/controller/items_state.dart';
 import 'package:geny_test/core/exception/app_exception.dart';
+import 'package:geny_test/core/utils/result.dart';
 import 'package:geny_test/feature/business/data/model/business.dart';
 
 import '../../feature/business/data/model/business.dart';
@@ -22,7 +22,7 @@ void main() {
 
     test('loadItems success updates state to ItemsLoaded', () async {
       // Arrange
-      fetcher() async => Right<AppException, List<Business>>(fakeBusinesses);
+      Future<SuccessResult<List<Business>>> fetcher() async => const SuccessResult<List<Business>>(fakeBusinesses);
 
       // Act
       await notifier.loadItems(fetcher);
@@ -35,7 +35,7 @@ void main() {
 
     test('loadItems failure updates state to ItemsError', () async {
       // Arrange
-      fetcher() async => Left<AppException, List<Business>>(AppException.noLocalData);
+      Future<FailureResult<List<Business>>> fetcher() async => const FailureResult<List<Business>>(AppException.noLocalData);
 
       // Act
       await notifier.loadItems(fetcher);
