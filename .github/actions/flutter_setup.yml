@@ -1,0 +1,21 @@
+name: "Flutter Setup"
+description: "Checkout, setup Java, setup Flutter, and install deps"
+runs:
+  using: "composite"
+  steps:
+    - name: 📂 Checkout source
+      uses: actions/checkout@v3
+
+    - name: ☕ Setup Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: temurin
+        java-version: "17"
+
+    - name: 🦋 Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: stable
+
+    - name: 📥 Install dependencies
+      run: flutter pub get

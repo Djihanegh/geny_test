@@ -1,0 +1,26 @@
+name: Build APK
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  # ─────────────── Build APK ───────────────
+  build_apk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔧 Setup Flutter
+        uses: ./.github/actions/flutter_setup
+
+      - name: 🏗️ Build release APK
+        run: flutter build apk --release
+
+      - name: 📦 Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
