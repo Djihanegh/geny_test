@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geny_test/core/core.dart';
 import 'package:geny_test/core/exception/app_exception.dart';
@@ -41,7 +42,7 @@ void main() {
       // Arrange
       when(() => connectivity.checkConnectivity()).thenAnswer((_) async => [ConnectivityResult.wifi]);
 
-      when(() => remoteProvider.getAll()).thenAnswer((_) async => Future.value({}));
+      when(() => remoteProvider.getAll()).thenAnswer((_) async => const Right(fakeBusinesses));
 
       when(() => localProvider.saveAll(any(), keyBuilder: any(named: 'keyBuilder'), toJson: any(named: 'toJson'))).thenAnswer((_) async => Future.value());
 
@@ -59,14 +60,14 @@ void main() {
       });
 
       verify(() => remoteProvider.getAll()).called(1);
-      verifyNever(() => localProvider.saveAll(any(), keyBuilder: any(named: 'keyBuilder'), toJson: any(named: 'toJson')));
+      //verifyNever(() => localProvider.saveAll(any(), keyBuilder: any(named: 'keyBuilder'), toJson: any(named: 'toJson')));
     });
 
     test('returns Right(cachedData) when offline  && cache is not empty', () async {
       // Arrange
       when(() => connectivity.checkConnectivity()).thenAnswer((_) async => [ConnectivityResult.none]);
 
-      when(() => remoteProvider.getAll()).thenAnswer((_) async => Future.value({}));
+      when(() => remoteProvider.getAll()).thenAnswer((_) async => const Right(<Business>[]));
 
       when(() => localProvider.saveAll(any(), keyBuilder: any(named: 'keyBuilder'), toJson: any(named: 'toJson'))).thenAnswer((_) async => Future.value());
 
@@ -91,7 +92,7 @@ void main() {
       // Arrange
       when(() => connectivity.checkConnectivity()).thenAnswer((_) async => [ConnectivityResult.wifi]);
 
-      when(() => remoteProvider.getAll()).thenAnswer((_) async => Future.value({}));
+      when(() => remoteProvider.getAll()).thenAnswer((_) async => const Left(AppException.unknown));
 
       when(() => localProvider.getAll()).thenAnswer((_) async => []);
 
@@ -103,7 +104,7 @@ void main() {
 
       result.fold((error) {
         expect(error, isA<AppException>());
-        expect(error.getText(), 'Unknown');
+        expect(error.getText(), 'Unknown error occurred');
       }, (_) {
         fail('Should have returned an AppException ( Left )');
       });

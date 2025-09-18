@@ -1,9 +1,17 @@
+import 'package:dio/dio.dart';
 import 'package:geny_test/core/logger/logger.dart';
 
 enum AppException {
   noInternet,
   noLocalData,
-
+  // Dio errors
+  connectionTimeout,
+  sendTimeout,
+  receiveTimeout,
+  badCertificate,
+  badResponse,
+  cancel,
+  connectionError,
   // Other
   unknown,
   ;
@@ -28,12 +36,40 @@ enum AppException {
       return e;
     }
 
+    if (e is DioException) {
+      switch (e.type) {
+        case DioExceptionType.connectionTimeout:
+          return AppException.connectionTimeout;
+        case DioExceptionType.sendTimeout:
+          return AppException.sendTimeout;
+        case DioExceptionType.receiveTimeout:
+          return AppException.receiveTimeout;
+        case DioExceptionType.badCertificate:
+          return AppException.badCertificate;
+        case DioExceptionType.badResponse:
+          return AppException.badResponse;
+        case DioExceptionType.cancel:
+          return AppException.cancel;
+        case DioExceptionType.connectionError:
+          return AppException.connectionError;
+        case DioExceptionType.unknown:
+          return AppException.unknown;
+      }
+    }
+
     return unknown;
   }
 
   String getText() => switch (this) {
-        AppException.noInternet => 'No network data',
+        AppException.noInternet => 'No network connection',
         AppException.noLocalData => 'No Businesses available',
-        AppException.unknown => 'Unknown',
+        AppException.connectionTimeout => 'Connection timed out',
+        AppException.sendTimeout => 'Request timed out while sending',
+        AppException.receiveTimeout => 'Response timed out',
+        AppException.badCertificate => 'Invalid SSL certificate',
+        AppException.badResponse => 'Server responded with an error',
+        AppException.cancel => 'Request was cancelled',
+        AppException.connectionError => 'Failed to connect to server',
+        AppException.unknown => 'Unknown error occurred',
       };
 }

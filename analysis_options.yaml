@@ -8,6 +8,7 @@ analyzer:
   errors:
     missing_return: error
     lines_longer_than_80_chars: ignore # modern monitors handle >80 fine
+    inference_failure_on_function_invocation: ignore
 
 linter:
   rules:

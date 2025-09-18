@@ -26,16 +26,24 @@ class BusinessRepository extends ItemRepository<Business> {
       try {
         // Get data from API
         final remoteData = await remoteProvider.getAll();
-        final businesses = (remoteData as List<Map<String, dynamic>>).map(Business.fromJson).toList();
+
+        return await remoteData.fold(
+          // left: error
+          (e) async {
+            return Left(e);
+          },
+          // right: success
+          (r) async {
+            await localProvider.saveAll(
+              r,
+              keyBuilder: (b) => b.name,
+              toJson: (b) => b.toJson(),
+            );
+            return Right(r);
+          },
+        ); //
 
         // Store in Hive
-        await localProvider.saveAll(
-          businesses,
-          keyBuilder: (b) => b.name,
-          toJson: (b) => b.toJson(),
-        );
-
-        return Right(businesses);
       } catch (e, s) {
         // Fallback to local data on network error
         return getCachedData(e, s);
