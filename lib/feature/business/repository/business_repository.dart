@@ -30,7 +30,7 @@ class BusinessRepository extends ItemRepository<Business> {
         return await remoteData.fold(
           // left: error
           (e) async {
-            return Left(e);
+            return getCachedData(e, null);
           },
           // right: success
           (r) async {

@@ -60,7 +60,7 @@ void main() {
       });
 
       verify(() => remoteProvider.getAll()).called(1);
-      //verifyNever(() => localProvider.saveAll(any(), keyBuilder: any(named: 'keyBuilder'), toJson: any(named: 'toJson')));
+      // verifyNever(() => localProvider.saveAll(any(), keyBuilder: any(named: 'keyBuilder'), toJson: any(named: 'toJson')));
     });
 
     test('returns Right(cachedData) when offline  && cache is not empty', () async {

@@ -8,7 +8,7 @@ import 'package:geny_test/feature/business/data/model/business.dart';
 class BusinessDioProvider extends DioHttpProvider with ProviderLoggy {
   BusinessDioProvider()
       : super(
-          baseUrl: 'https://example.com', //https://genyapp.free.beeceptor.com/
+          baseUrl: 'https://example.com/', //https://genyapp.free.beeceptor.com/
         );
 
   Future<Either<AppException, List<Business>>> getAll() async {
