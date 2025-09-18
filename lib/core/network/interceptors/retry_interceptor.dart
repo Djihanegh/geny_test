@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'dart:math';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class RetryInterceptor extends Interceptor {
   @override
   Future<void> onError(DioException err, ErrorInterceptorHandler handler) async {
     final shouldRetry = _shouldRetry(err);
-    final int retries = int.parse(err.requestOptions.extra['retries'].toString());
+    final retries = (err.requestOptions.extra['retries'] is int) ? err.requestOptions.extra['retries'] as int : 0;
 
     if (shouldRetry && retries < maxRetries) {
       final nextRetry = retries + 1;

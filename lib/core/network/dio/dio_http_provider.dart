@@ -4,6 +4,7 @@ import 'package:geny_test/core/network/interceptors/auth_interceptor.dart';
 import 'package:geny_test/core/network/interceptors/cancel_interceptor.dart';
 import 'package:geny_test/core/network/interceptors/error_interceptor.dart';
 import 'package:geny_test/core/network/interceptors/logging_interceptor.dart';
+import 'package:geny_test/core/network/interceptors/retry_interceptor.dart';
 
 abstract class DioHttpProvider {
   DioHttpProvider({
@@ -23,7 +24,7 @@ abstract class DioHttpProvider {
         ),
         ErrorInterceptor(),
         CancelInterceptor(CancelToken()),
-        //  RetryInterceptor(dio: _dio),
+        RetryInterceptor(dio: _dio),
       ],
     );
   }
