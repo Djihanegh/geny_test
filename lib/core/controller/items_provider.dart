@@ -41,4 +41,19 @@ class ItemsNotifier<T> extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  final Map<String, double> _ratings = {
+    'Glow & Go Salon': 0.0,
+    'Fresh Cuts Barbershop': 5.0,
+    'Chef Ama Private Kitchen': 1.0,
+  };
+
+  double getRating(String name) {
+    return _ratings[name] ?? 0.0;
+  }
+
+  void updateRating(String name, double value) {
+    _ratings[name] = value;
+    notifyListeners(); // 👈 this triggers UI rebuilds
+  }
 }

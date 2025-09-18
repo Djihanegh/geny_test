@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:geny_test/core/controller/items_provider.dart';
+import 'package:geny_test/core/logger/logger.dart';
+import 'package:geny_test/core/logger/loggy_types.dart';
 import 'package:geny_test/feature/business/data/model/business.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
-class BusinessCard extends StatelessWidget {
+class BusinessCard extends StatelessWidget with UiLoggy {
   const BusinessCard(this.business, {super.key});
 
   final Business business;
 
   @override
   Widget build(BuildContext context) {
+    logInfo('Rebuilding Business Card Widget');
     return GestureDetector(
       child: Padding(
         padding: const EdgeInsets.all(10),
@@ -42,6 +47,15 @@ class BusinessCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(' 📞 ${business.phone}'),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Selector<ItemsNotifier<Business>, double>(
+                    selector: (_, provider) => provider.getRating(business.name),
+                    builder: (_, rating, __) {
+                      return Text('⭐ Rating: $rating');
+                    },
+                  ),
                 ],
               ),
             ],

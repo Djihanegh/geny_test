@@ -21,7 +21,9 @@ class ItemsListView<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final itemsState = context.watch<ItemsNotifier<T>>().state;
+    final itemsState = context.select<ItemsNotifier<T>, ItemsState<T>>(
+      (notifier) => notifier.state,
+    );
     if (itemsState is ItemsLoading<T>) {
       return const Center(child: CircularProgressIndicator());
     }

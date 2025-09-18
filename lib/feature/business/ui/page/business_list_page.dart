@@ -24,6 +24,7 @@ class _BusinessListPageState extends State<BusinessListPage> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('Rebuilding Buismess List');
     return Scaffold(
       appBar: AppBar(
         title: const Text('Businesses'),
@@ -34,6 +35,12 @@ class _BusinessListPageState extends State<BusinessListPage> {
         itemPadding: 16,
         itemBuilder: (context, business) => BusinessCard(business),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.read<ItemsNotifier<Business>>().updateRating('Glow & Go Salon', 1),
+        tooltip: 'Increment',
+        child: const Icon(Icons.add), // The plus icon
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat, // Positions the button at the bottom end
     );
   }
 }
